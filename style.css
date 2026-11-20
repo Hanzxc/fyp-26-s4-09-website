@@ -404,7 +404,7 @@ h3 { font-size: 18px; line-height: 26px; font-weight: 500; }
 /* how it works */
 .steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   margin-top: 48px;
 }
@@ -443,6 +443,14 @@ h3 { font-size: 18px; line-height: 26px; font-weight: 500; }
   line-height: 22px;
 }
 .feature-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.build-label {
+  margin-top: 24px;
+  padding: 12px 0 4px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--rose-ink);
+}
 
 /* team */
 .team {
@@ -525,6 +533,7 @@ h3 { font-size: 18px; line-height: 26px; font-weight: 500; }
 
 @media (max-width: 960px) {
   .split { grid-template-columns: 1fr; gap: 32px; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
   .team { grid-template-columns: repeat(2, 1fr); }
 }
 
