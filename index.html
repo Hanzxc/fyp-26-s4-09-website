@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Biometric Authentication Security Tool · FYP-26-S4-09</title>
-  <meta name="description" content="Two Android apps that test face login, time every attempt and explain security weaknesses to developers in plain language. CSIT321 Final Year Project by group FYP-26-S4-09.">
+  <meta name="description" content="Two Android apps that test face login, time every attempt and explain security weaknesses to developers in plain language. Everything runs on the phone. CSIT321 Final Year Project by group FYP-26-S4-09.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
@@ -23,9 +23,11 @@
       </a>
 
       <nav class="nav-links" aria-label="Sections">
-        <a href="#problem">Problem</a>
         <a href="#how">How it works</a>
         <a href="#apps">The apps</a>
+        <a href="#threats">Threats</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#built">Tech</a>
         <a href="#team">Team</a>
       </nav>
 
@@ -37,7 +39,12 @@
         <nav aria-label="Sections">
           <a href="#problem">Problem</a>
           <a href="#how">How it works</a>
+          <a href="#users">Who it's for</a>
           <a href="#apps">The apps</a>
+          <a href="#threats">Threats</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#built">Tech</a>
+          <a href="#scope">Scope</a>
           <a href="#team">Team</a>
           <a href="https://github.com/SpycrabSXL/October-2026-SIM-UOW-FYP">GitHub</a>
         </nav>
@@ -54,9 +61,10 @@
           <p class="kicker">CSIT321 Final Year Project</p>
           <h1>Find the weak spots in face login before attackers do</h1>
           <p class="lead">
-            Two Android apps for developers who use face authentication. The Test App runs face login attempts and
-            times every step. The Analyst Tool reads those timings, looks for leaks and photo spoofing, and explains
-            each fix in plain language. A hardened build of the Test App then shows whether the fixes worked.
+            Two Android apps for developers who use face authentication. The Biometric Test App runs face login
+            attempts and times every step. The Security Analyst Tool reads those timings, looks for leaks and photo
+            spoofing, and explains each fix in plain language. Then you switch the fixes on, test again and see
+            whether they worked.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#how">See how it works</a>
@@ -68,7 +76,7 @@
         <div class="preview" aria-label="Preview of the two apps: a face scan scoring 0.82 in 412 ms, and a chart showing near misses take longer to reject">
           <div class="phone phone-back" aria-hidden="true">
             <div class="phone-head">
-              <span>Vulnerable build</span>
+              <span>Mitigations off</span>
               <span class="mono muted">14 / 40</span>
             </div>
             <div class="scan">
@@ -165,7 +173,7 @@
           <li class="step">
             <span class="step-no mono">02</span>
             <h3>Export</h3>
-            <p>Each session is saved as a telemetry file with a format version and a checksum, so a file that has
+            <p>Each run is saved as a telemetry file with a format version and a checksum, so a file that has
               been edited gets caught on import.</p>
           </li>
           <li class="step">
@@ -177,34 +185,69 @@
           <li class="step">
             <span class="step-no mono">04</span>
             <h3>Compare</h3>
-            <p>The same tests run again on the hardened build, which has the recommended fixes. The Analyst Tool
-              puts the two runs side by side to show whether each weakness is gone.</p>
+            <p>The tester turns on the fixes in the Test App and runs the same tests again. The Analyst Tool puts
+              the two runs side by side to show which weaknesses are gone.</p>
           </li>
         </ol>
       </div>
     </section>
 
+    <!-- who it's for -->
+    <section id="users" class="section">
+      <div class="wrap split">
+        <div class="split-head">
+          <h2>Who it's for</h2>
+          <p class="section-lead">App developers who use face login but have little security training. The tester
+            and the analyst are often the same person.</p>
+        </div>
+        <div class="rows">
+          <article class="row role">
+            <h3>Tester</h3>
+            <p class="role-app mono">Biometric Test App</p>
+            <p>Enrols participants, sets the match threshold, picks a scenario and runs the attempts, then exports
+              each run.</p>
+          </article>
+          <article class="row role">
+            <h3>Participant</h3>
+            <p class="role-app mono">Biometric Test App</p>
+            <p>Reads the consent screen and agrees before any face is captured. The tester does the rest, and can be
+              a participant too.</p>
+          </article>
+          <article class="row role">
+            <h3>Analyst</h3>
+            <p class="role-app mono">Security Analyst Tool</p>
+            <p>Imports runs, reads the findings and recommendations, and exports a PDF report to share with the
+              team.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- the two apps -->
-    <section id="apps" class="section">
+    <section id="apps" class="section section-tint">
       <div class="wrap">
         <h2>The two apps</h2>
+        <p class="section-lead">Both run fully on an Android phone. Results move from one app to the other as an
+          exported file.</p>
         <div class="apps">
           <article class="app">
             <div class="app-head">
               <h3>Biometric Test App</h3>
-              <p class="muted">For testers and participants, in a vulnerable and a hardened build</p>
+              <p class="muted">For testers and participants</p>
             </div>
             <ul class="feature-list">
-              <li>Records participant consent and enrols a face</li>
-              <li>Lets the tester pick the participant and scenario, including a photo spoof</li>
-              <li>Sets the match threshold and runs repeated attempts</li>
-              <li>Logs the timing and result of every attempt</li>
-              <li>Exports each run as a telemetry file with a checksum</li>
+              <li>Records participant consent before the camera turns on</li>
+              <li>Enrols a participant's face, and lets the tester re-enrol or delete participants</li>
+              <li>Labels each attempt as genuine, impostor or photo spoof</li>
+              <li>Lets the tester change the match threshold to see how strict matching affects security</li>
+              <li>Times every processing step and saves the outcome of every attempt</li>
+              <li>Runs many attempts in a row to collect enough samples and test repeated guessing</li>
+              <li>Exports each run as a telemetry file</li>
             </ul>
-            <p class="build-label">The hardened build adds</p>
+            <p class="build-label">Mitigation switches, off by default</p>
             <ul class="feature-list">
-              <li>The same response time for every attempt</li>
-              <li>A blink check to catch photos</li>
+              <li>A fixed response time, so timing no longer shows how close a face came</li>
+              <li>A blink check that rejects printed and on-screen photos</li>
               <li>A lockout after too many failed attempts</li>
             </ul>
           </article>
@@ -214,11 +257,14 @@
               <p class="muted">For security analysts and app developers</p>
             </div>
             <ul class="feature-list">
-              <li>Imports runs and rejects files that fail the format or checksum check</li>
-              <li>Shows statistics and charts for each session</li>
-              <li>Checks timing side channels, photo spoofing, error rates and repeated-attempt limits</li>
-              <li>Explains each finding with a recommendation</li>
-              <li>Compares a vulnerable run with a hardened run</li>
+              <li>Imports telemetry from the Test App, or from any app that uses the same format</li>
+              <li>Lists every imported session and shows summary statistics for each one</li>
+              <li>Charts the timings and match scores</li>
+              <li>Tests whether accepted and rejected attempts take different amounts of time</li>
+              <li>Reports how often photo spoofs got through, the false accept and false reject rates, and
+                whether repeated failures were limited</li>
+              <li>Lists findings by severity, each with a recommended fix</li>
+              <li>Compares a run with the mitigations off against a run with them on</li>
               <li>Exports a PDF report and deletes sessions that are no longer needed</li>
             </ul>
           </article>
@@ -226,9 +272,159 @@
       </div>
     </section>
 
+    <!-- threats -->
+    <section id="threats" class="section">
+      <div class="wrap">
+        <h2>Five attacks it tests against</h2>
+        <p class="section-lead">Each one comes from how face login gets broken in practice. The first three are
+          checked from the telemetry; the last two are blocked by how the apps handle data.</p>
+
+        <div class="threats" role="table" aria-label="Attacks, what the tool does, and the fix">
+          <div class="threat threat-head" role="row">
+            <span role="columnheader">Attack</span>
+            <span role="columnheader">What the tool does</span>
+            <span role="columnheader">Fix or safeguard</span>
+          </div>
+          <div class="threat" role="row">
+            <div role="cell">
+              <h3>Timing inference</h3>
+              <p>The attacker times each failed try. If near misses take longer to reject, every failure tells
+                them how close they came.</p>
+            </div>
+            <p role="cell">Runs a statistical test on accepted and rejected attempts to see whether their timings
+              differ.</p>
+            <p role="cell" class="fix">Give every attempt the same response time.</p>
+          </div>
+          <div class="threat" role="row">
+            <div role="cell">
+              <h3>Photo spoofing</h3>
+              <p>The attacker holds up a photo of the victim, taken from social media.</p>
+            </div>
+            <p role="cell">Counts how many photo spoof attempts were accepted.</p>
+            <p role="cell" class="fix">Add a liveness check, such as asking for a blink.</p>
+          </div>
+          <div class="threat" role="row">
+            <div role="cell">
+              <h3>Repeated guessing</h3>
+              <p>The attacker keeps trying until one attempt passes.</p>
+            </div>
+            <p role="cell">Checks whether failed attempts in a row were ever limited.</p>
+            <p role="cell" class="fix">Lock face login after too many failures.</p>
+          </div>
+          <div class="threat" role="row">
+            <div role="cell">
+              <h3>Stored face data</h3>
+              <p>Someone with a lost or unlocked phone opens the Test App's data or its exported files.</p>
+            </div>
+            <p role="cell">Keeps participant screens behind a PIN or the phone's screen lock.</p>
+            <p role="cell" class="fix">Face data is encrypted with a key in the Android Keystore, and exports never
+              contain faces.</p>
+          </div>
+          <div class="threat" role="row">
+            <div role="cell">
+              <h3>Tampered telemetry</h3>
+              <p>A telemetry file is edited after export so the analysis hides a weakness.</p>
+            </div>
+            <p role="cell">Checks the format and checksum of every file on import.</p>
+            <p role="cell" class="fix">A file that fails either check is rejected and never saved.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- privacy -->
+    <section id="privacy" class="section section-tint">
+      <div class="wrap split">
+        <div class="split-head">
+          <h2>Private by design</h2>
+          <p class="section-lead">The apps handle people's faces, so they keep as little as they can and follow
+            Singapore's Personal Data Protection Act (PDPA).</p>
+        </div>
+        <div class="rows">
+          <article class="row">
+            <h3>Stays on the phone</h3>
+            <p>There is no server and no internet connection. Test data only leaves the device when someone
+              exports it.</p>
+          </article>
+          <article class="row">
+            <h3>Consent comes first</h3>
+            <p>A participant reads what face data is collected and agrees before the camera captures anything.</p>
+          </article>
+          <article class="row">
+            <h3>Codes instead of names</h3>
+            <p>Participants are known by a code. Exported files and PDF reports carry those codes, never face images
+              or face embeddings.</p>
+          </article>
+          <article class="row">
+            <h3>Encrypted, logged and deletable</h3>
+            <p>Face embeddings are stored encrypted. Both apps keep a log of enrolments, imports, exports and
+              deletions, and any participant or session can be deleted at any time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- tech -->
+    <section id="built" class="section">
+      <div class="wrap">
+        <div class="split">
+          <div class="split-head">
+            <h2>How it's built</h2>
+            <p class="section-lead">Native Android, with the face model running on the phone.</p>
+            <p class="body-copy">Both apps follow a Boundary, Control, Entity structure, so screens, logic and
+              data can change separately. Recommendations come from a rules file, so the advice can be updated
+              without touching code. The telemetry format has a version number, which keeps older exports
+              readable.</p>
+            <p class="body-copy">Tools like MobSF and NowSecure scan for general mobile app weaknesses. This project
+              looks only at biometric login and is meant to sit next to them.</p>
+          </div>
+          <dl class="stack">
+            <div><dt>Language and UI</dt><dd>Kotlin, Jetpack Compose</dd></div>
+            <div><dt>Camera</dt><dd>CameraX</dd></div>
+            <div><dt>Face detection</dt><dd>Google ML Kit</dd></div>
+            <div><dt>Face matching</dt><dd>MobileFaceNet on LiteRT, cosine similarity</dd></div>
+            <div><dt>Storage</dt><dd>Room (SQLite), one database per app</dd></div>
+            <div><dt>Statistics</dt><dd>Apache Commons Statistics</dd></div>
+            <div><dt>Charts</dt><dd>Vico</dd></div>
+            <div><dt>Telemetry</dt><dd>Versioned JSON with a checksum</dd></div>
+            <div><dt>Reports</dt><dd>PDF export</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- scope -->
+    <section id="scope" class="section section-tint">
+      <div class="wrap">
+        <h2>Scope and what's next</h2>
+        <p class="section-lead">The requirements were written up in November 2026. Building the apps comes
+          next.</p>
+        <div class="scope">
+          <article class="scope-col">
+            <h3>First release</h3>
+            <ul class="feature-list">
+              <li>The Biometric Test App and the Security Analyst Tool</li>
+              <li>Face authentication</li>
+              <li>Checks for timing leaks, photo spoofing, error rates and attempt limits</li>
+              <li>Plain-language recommendations from a rules file</li>
+            </ul>
+          </article>
+          <article class="scope-col">
+            <h3>Stretch goals</h3>
+            <ul class="feature-list">
+              <li>Fingerprint and other biometric methods</li>
+              <li>Recommendations written by a large language model, behind the same interface as the rules</li>
+            </ul>
+            <p class="scope-note">The tool only reports the weaknesses it has checks for. It won't discover new
+              kinds of vulnerability.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!--
       Demo section: add this back once the apps have screenshots or a demo video.
-      <section id="demo" class="section section-tint">
+      <section id="demo" class="section">
         <div class="wrap">
           <h2>See it running</h2>
           <img src="assets/screenshot-1.png" alt="...">
@@ -237,7 +433,7 @@
     -->
 
     <!-- team -->
-    <section id="team" class="section section-tint">
+    <section id="team" class="section">
       <div class="wrap">
         <h2>The team</h2>
         <p class="section-lead">Group FYP-26-S4-09</p>
@@ -285,7 +481,6 @@
       </div>
       <div class="footer-links">
         <a href="https://github.com/SpycrabSXL/October-2026-SIM-UOW-FYP">GitHub repository</a>
-        <a href="mailto:group-email@example.com">Contact the team</a>
       </div>
     </div>
     <p class="wrap copyright">© 2026 FYP-26-S4-09</p>
